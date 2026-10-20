@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rainbow Books | Books at the end of the rainbow</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--tx:#1f2430;--mut:#667085;--pri:#283593;--pri2:#3949ab;--acc:#ef6c00;--ok:#2e7d32;--bd:#dfe3ec;--hd:#1a237e;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10131c;--card:#1a1f2c;--tx:#e8eaf2;--mut:#9aa3b5;--pri:#8c9eff;--pri2:#7986cb;--acc:#ffa726;--ok:#66bb6a;--bd:#2c3345;--hd:#0d1030;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10131c;--card:#1a1f2c;--tx:#e8eaf2;--mut:#9aa3b5;--pri:#8c9eff;--pri2:#7986cb;--acc:#ffa726;--ok:#66bb6a;--bd:#2c3345;--hd:#0d1030;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--hd);z-index:10}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--hd);color:#fff;display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;padding:10px 20px}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer;font-weight:700;font-size:1.25rem}
+.rb{width:38px;height:19px;border-radius:38px 38px 0 0;background:radial-gradient(circle at 50% 100%,var(--hd) 0 5px,#8e24aa 5px 8px,#1e88e5 8px 11px,#43a047 11px 14px,#fdd835 14px 16px,#fb8c00 16px 18px,#e53935 18px 19px)}
+nav{display:flex;flex-wrap:wrap;gap:4px;flex:1}
+nav button,.cartb{background:none;border:0;color:#fff;font:inherit;padding:6px 10px;border-radius:8px;cursor:pointer}
+nav button:hover,.cartb:hover,nav button.on{background:rgba(255,255,255,.18)}
+.cartb{background:var(--acc);color:#111;font-weight:700}
+main{max-width:1100px;margin:0 auto;padding:22px 18px 60px}
+h1{font-size:2rem;margin:.2em 0}h2{margin:1.2em 0 .5em;color:var(--pri)}
+.hero{background:linear-gradient(120deg,#283593,#8e24aa);color:#fff;border-radius:16px;padding:34px 26px}
+.hero p{max-width:560px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+input,select,textarea{font:inherit;padding:10px 12px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--tx);width:100%}
+.hero input{width:auto;flex:1;min-width:200px}
+.btn{background:var(--pri2);color:#fff;border:0;border-radius:8px;padding:10px 18px;font:inherit;font-weight:600;cursor:pointer}
+html:not([data-x]) .btn{color:#fff}
+.btn.alt{background:transparent;color:var(--pri);border:1.5px solid var(--pri)}
+.btn.ok{background:var(--ok)}.btn:hover{filter:brightness(1.1)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px}
+.cover{height:130px;border-radius:8px;color:#fff;display:flex;align-items:flex-end;padding:10px;font-weight:700;line-height:1.2;margin-bottom:10px}
+.mut{color:var(--mut);font-size:.9rem}.price{font-weight:700;color:var(--pri)}
+.tag{display:inline-block;font-size:.75rem;padding:2px 8px;border-radius:10px;background:var(--pri2);color:#fff}
+.tag.fr{background:var(--acc);color:#111}
+.cols{display:grid;grid-template-columns:1.5fr 1fr;gap:20px}
+@media(max-width:760px){.cols{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse}td,th{padding:8px;border-bottom:1px solid var(--bd);text-align:left}
+label{display:block;font-size:.85rem;color:var(--mut);margin:10px 0 4px;font-weight:600}
+.steps{display:flex;gap:6px;margin:16px 0}.step{flex:1;text-align:center;padding:10px 4px;border-radius:8px;background:var(--bd);font-size:.85rem}.step.d{background:var(--ok);color:#fff}
+.note{background:#fff8e1;color:#5d4a00;border-radius:8px;padding:10px 12px;font-size:.9rem}
+.qty button{width:28px;height:28px;border-radius:6px;border:1px solid var(--bd);background:var(--card);color:var(--tx);cursor:pointer}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header>
+<div class="logo" onclick="go('home')"><span class="rb"></span>Rainbow Books</div>
+<nav>
+<button data-go="home">Home</button><button data-go="books">Books</button><button data-go="events">Events</button><button data-go="publish">Publish with us</button><button data-go="stores">Find a store</button><button data-go="track">Track order</button><button data-go="signin" id="acct">Sign in</button>
+</nav>
+<button class="cartb" onclick="go('cart')">Cart (<span id="cc">0</span>)</button>
+</header>
+<main>
+<section id="v-home">
+<div class="hero"><h1>Books at the end of the rainbow</h1><p>Victoria’s bookseller since 1946. Browse thousands of titles, order online, and collect in store or have them delivered.</p>
+<div class="row"><input id="hs" placeholder="Search by title or author"><button class="btn ok" onclick="go('books',document.getElementById('hs').value)">Search</button></div></div>
+<h2>Featured books</h2><div class="grid" id="feat"></div>
+<h2>More than a book</h2>
+<div class="grid">
+<div class="card"><b>Click and collect</b><p class="mut">Order online and pick up free from any company or franchise store.</p></div>
+<div class="card"><b>Author events</b><p class="mut">Signings, book clubs and discussion nights in store.</p><button class="btn alt" onclick="go('events')">See events</button></div>
+<div class="card"><b>Publish with us</b><p class="mut">Print, e-book and print-on-demand services for authors.</p><button class="btn alt" onclick="go('publish')">Find out more</button></div>
+</div></section>
+
+<section id="v-books" hidden><h1>Books</h1>
+<div class="row"><input id="q" placeholder="Search title or author" oninput="renderBooks()" style="flex:2;min-width:200px">
+<select id="cat" onchange="renderBooks()" style="flex:1;min-width:140px"><option value="">All categories</option><option>Fiction</option><option>Kids</option><option>Non-fiction</option><option>Australian</option></select>
+<select id="sort" onchange="renderBooks()" style="flex:1;min-width:140px"><option value="t">Sort: title</option><option value="p">Price: low to high</option></select></div>
+<p class="mut" id="cnt"></p><div class="grid" id="bk"></div></section>
+
+<section id="v-events" hidden><h1>Author events</h1><p class="mut">Free to attend. Seats are limited, so please register.</p><div class="grid" id="ev"></div>
+<div class="card" id="evf" hidden style="margin-top:16px"><h2 style="margin-top:0" id="evt"></h2>
+<form onsubmit="regEv(event)"><label>Full name</label><input required><label>Email</label><input type="email" required><label>Number of seats</label><select><option>1</option><option>2</option><option>3</option><option>4</option></select><p><button class="btn">Confirm registration</button></p></form><p id="evm" class="note" hidden></p></div></section>
+
+<section id="v-publish" hidden><h1>Publish with Rainbow Books</h1><p class="mut">Trusted editing, covers and presentation for every kind of author.</p>
+<div class="grid"><div class="card"><b>Basic</b><p class="price">$499</p><p class="mut">E-book formatting, ISBN and listing on our website.</p></div>
+<div class="card"><b>Standard</b><p class="price">$1,499</p><p class="mut">Professional edit, cover design, e-book and print-on-demand copies.</p></div>
+<div class="card"><b>Premium</b><p class="price">$3,299</p><p class="mut">Everything in Standard plus in-store launch event and marketing.</p></div></div>
+<div class="card" style="margin-top:16px"><h2 style="margin-top:0">Submit your manuscript</h2>
+<form onsubmit="pubSub(event)"><div class="cols"><div><label>Your name</label><input required><label>Email</label><input type="email" required><label>Book title</label><input required></div>
+<div><label>Genre</label><select><option>Fiction</option><option>Non-fiction</option><option>Kids</option></select><label>Service level</label><select><option>Basic</option><option selected>Standard</option><option>Premium</option></select><label>Manuscript file</label><input type="file"></div></div>
+<p><button class="btn">Send submission</button></p></form><p id="pm" class="note" hidden></p></div></section>
+
+<section id="v-stores" hidden><h1>Find a store</h1><p class="mut">Company-owned and franchise stores all offer click and collect.</p><div class="grid" id="st"></div></section>
+
+<section id="v-cart" hidden><h1>Your cart</h1><div id="cartbody"></div></section>
+
+<section id="v-checkout" hidden><h1>Checkout</h1>
+<form onsubmit="place(event)" class="cols"><div>
+<div class="card"><b>1. Your details</b><label>Full name</label><input required><label>Email</label><input type="email" required><label>Phone</label><input></div>
+<div class="card" style="margin-top:14px"><b>2. Delivery</b><div class="row" style="margin-top:8px"><label style="margin:0"><input type="radio" name="dm" value="d" checked onchange="dm()" style="width:auto"> Home delivery</label><label style="margin:0"><input type="radio" name="dm" value="c" onchange="dm()" style="width:auto"> Click and collect (free)</label></div>
+<div id="addr"><label>Street address</label><input id="a1"><div class="row"><div style="flex:1"><label>Suburb</label><input id="a2"></div><div style="width:110px"><label>Postcode</label><input id="a3"></div></div></div>
+<div id="store" hidden><label>Collect from</label><select id="ss"></select></div></div>
+<div class="card" style="margin-top:14px"><b>3. Payment</b><div class="note" style="margin:8px 0">Prototype only: no card is checked and no payment is taken.</div>
+<label>Name on card</label><input required><label>Card number</label><input required inputmode="numeric" placeholder="1234 5678 9012 3456" maxlength="19"><div class="row"><div style="flex:1"><label>Expiry</label><input required placeholder="MM/YY" maxlength="5"></div><div style="flex:1"><label>CVV</label><input required placeholder="123" maxlength="4"></div></div></div></div>
+<div class="card" style="align-self:start"><b>Order summary</b><div id="sum"></div><p><button class="btn ok" style="width:100%">Place order</button></p></div></form></section>
+
+<section id="v-done" hidden><div class="card"><h1 style="color:var(--ok)">Thank you! Your order is confirmed.</h1><p>Order number: <b id="on"></b></p><p class="mut" id="ot"></p><div class="steps" id="os"></div><div id="osm"></div>
+<button class="btn" onclick="go('books')">Keep browsing</button></div></section>
+
+<section id="v-track" hidden><h1>Track your order</h1><div class="card"><form onsubmit="trk(event)" class="row"><input id="tn" required placeholder="Order number, e.g. RB-10234" style="flex:1"><button class="btn">Track</button></form><div id="tr"></div></div></section>
+
+<section id="v-signin" hidden><h1 id="sit">Sign in</h1><div class="card" style="max-width:420px"><form onsubmit="sign(event)"><label>Email</label><input type="email" required><label>Password</label><input type="password" required><p><button class="btn">Sign in</button></p><p class="mut">New here? Any details will create a demo account.</p></form></div></section>
+</main>
+<script>
+const B=[["Wicked Tides","Anna Hale","Fiction",24.99,12.99,260],["The Quiet Garden","Ruth Moore","Fiction",22.5,11.5,140],["Melbourne Walks","J. Chen","Non-fiction",34.95,19.99,30],["Little Rainbow Stories","P. Singh","Kids",16.95,8.99,330],["Red Dust Road","K. Walker","Australian",29.99,14.99,10],["Atlas of Melbourne","M. Rossi","Non-fiction",49.95,24.99,200],["The Midnight Shelf","Lena Ho","Fiction",23.0,12.0,280],["Bunyip Bedtime","T. Evans","Kids",14.95,7.99,170],["Cooking with Fire","D. Patel","Non-fiction",39.95,19.99,20],["Songlines of the South","A. Murray","Australian",32.99,16.99,100],["Harbour Lights","S. Dunn","Fiction",21.99,10.99,215],["Captain Koala","M. Lee","Kids",15.5,8.5,50]];
+const EV=[["Meet Anna Hale: Wicked Tides","Sat 7 Nov, 2 pm","Collins St store"],["Kids story time with Captain Koala","Sun 15 Nov, 10 am","Eastpoint Bayswater (franchise)"],["Book club: The Quiet Garden","Thu 19 Nov, 6:30 pm","Bourke St store"],["Writing for publication: free workshop","Sat 28 Nov, 11 am","Collins St store"]];
+const ST=[["Collins St","Company","Mon–Sat 9–6, Sun 10–5"],["Bourke St","Company","Mon–Sat 9–6, Sun 10–5"],["Eastpoint, Bayswater","Franchise","Mon–Sun 9–5:30"],["Chadstone","Company","Mon–Sun 9–7"],["Geelong","Franchise","Mon–Sat 9–5:30"],["Ballarat","Franchise","Mon–Sat 9–5"]];
+let cart=[],last=null,user=null,evi=0;
+const $=id=>document.getElementById(id),m=n=>"$"+n.toFixed(2);
+const price=l=>B[l.i][l.f?4:3];
+function go(v,q){document.querySelectorAll("main>section").forEach(s=>s.hidden=s.id!=="v-"+v);document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.go===v));
+if(v==="books"){if(q!==undefined)$("q").value=q;renderBooks()}if(v==="cart")renderCart();if(v==="checkout")renderSum();window.scrollTo(0,0)}
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>go(b.dataset.go));
+function card(b,i){return `<div class="card"><div class="cover" style="background:linear-gradient(135deg,hsl(${b[5]},60%,40%),hsl(${b[5]+40},60%,28%))">${b[0]}</div><b>${b[0]}</b><div class="mut">${b[1]} · ${b[2]}</div>
+<div class="row" style="margin-top:8px;align-items:center"><select id="f${i}" style="width:auto;flex:1"><option value="0">Paperback ${m(b[3])}</option><option value="1">E-book ${m(b[4])}</option></select><button class="btn" onclick="add(${i})">Add</button></div></div>`}
+function renderBooks(){const q=$("q").value.toLowerCase(),c=$("cat").value,s=$("sort").value;let r=B.map((b,i)=>[b,i]).filter(([b])=>(!c||b[2]===c)&&(b[0]+b[1]).toLowerCase().includes(q));
+r.sort((x,y)=>s==="p"?x[0][3]-y[0][3]:x[0][0].localeCompare(y[0][0]));$("cnt").textContent=r.length+" books found";$("bk").innerHTML=r.map(([b,i])=>card(b,i)).join("")||"<p>No books match your search.</p>"}
+$("feat").innerHTML=[0,3,4,6].map(i=>card(B[i],i)).join("");
+$("ev").innerHTML=EV.map((e,i)=>`<div class="card"><b>${e[0]}</b><p class="mut">${e[1]}<br>${e[2]}</p><button class="btn alt" onclick="openEv(${i})">Register</button></div>`).join("");
+$("st").innerHTML=ST.map(s=>`<div class="card"><b>${s[0]}</b> <span class="tag ${s[1]==="Franchise"?"fr":""}">${s[1]}</span><p class="mut">${s[2]}<br>Click and collect available</p></div>`).join("");
+$("ss").innerHTML=ST.map(s=>`<option>${s[0]} (${s[1]})</option>`).join("");
+function add(i){const f=+$("f"+i).value,l=cart.find(x=>x.i===i&&x.f===f);l?l.q++:cart.push({i,f,q:1});upd();const b=event.target;b.textContent="Added";setTimeout(()=>b.textContent="Add",900)}
+function upd(){$("cc").textContent=cart.reduce((a,l)=>a+l.q,0)}
+function totals(){const sub=cart.reduce((a,l)=>a+price(l)*l.q,0),pr=cart.some(l=>!l.f),col=document.querySelector("input[name=dm]:checked")?.value==="c";const sh=(!pr||col||sub>=60)?0:9.95;return{sub,sh,tot:sub+sh,gst:(sub+sh)/11}}
+function renderCart(){const b=$("cartbody");if(!cart.length){b.innerHTML='<div class="card"><p>Your cart is empty.</p><button class="btn" onclick="go(\'books\')">Browse books</button></div>';return}
+b.innerHTML=`<div class="card"><table><tr><th>Book</th><th>Format</th><th>Price</th><th>Qty</th><th></th></tr>${cart.map((l,k)=>`<tr><td>${B[l.i][0]}</td><td>${l.f?"E-book":"Paperback"}</td><td>${m(price(l))}</td><td class="qty"><button onclick="qt(${k},-1)">−</button> ${l.q} <button onclick="qt(${k},1)">+</button></td><td><button class="btn alt" onclick="qt(${k},-9)">Remove</button></td></tr>`).join("")}</table>
+<p style="text-align:right"><b>Subtotal: ${m(totals().sub)}</b><br><span class="mut">Free delivery over $60, or free click and collect</span></p><div class="row" style="justify-content:flex-end"><button class="btn alt" onclick="go('books')">Continue shopping</button><button class="btn ok" onclick="go('checkout')">Go to checkout</button></div></div>`}
+function qt(k,d){cart[k].q+=d;if(cart[k].q<1)cart.splice(k,1);upd();renderCart()}
+function renderSum(){const t=totals();$("sum").innerHTML=cart.map(l=>`<div class="row" style="justify-content:space-between"><span>${B[l.i][0]} ×${l.q}</span><span>${m(price(l)*l.q)}</span></div>`).join("")+`<hr><div class="row" style="justify-content:space-between"><span>Delivery</span><span>${t.sh?m(t.sh):"Free"}</span></div><div class="row" style="justify-content:space-between"><b>Total</b><b>${m(t.tot)}</b></div><p class="mut">Includes GST of ${m(t.gst)}</p>`;$("addr").hidden=document.querySelector("input[name=dm]:checked").value==="c"||cart.every(l=>l.f)}
+function dm(){const c=document.querySelector("input[name=dm]:checked").value==="c";$("store").hidden=!c;renderSum()}
+function steps(n,c){return ["Order placed","Packed at warehouse",c?"Ready to collect":"Dispatched",c?"Collected":"Delivered"].map((s,i)=>`<div class="step ${i<n?"d":""}">${s}</div>`).join("")}
+function place(e){e.preventDefault();if(!cart.length){go("cart");return}const c=document.querySelector("input[name=dm]:checked").value==="c",t=totals();
+last={n:"RB-"+(10000+Math.floor(Math.random()*89999)),c};$("on").textContent=last.n;$("ot").textContent=`Total paid ${m(t.tot)}. `+(c?`Collect from ${$("ss").value}. We will email you when it is ready.`:"We will email you when it is dispatched.")+(cart.every(l=>l.f)?" Your e-books are available in your library now.":"");
+$("os").innerHTML=steps(1,c);cart=[];upd();go("done")}
+function trk(e){e.preventDefault();$("tr").innerHTML=`<p>Order <b>${$("tn").value.toUpperCase()}</b>: packed at warehouse (demo status)</p><div class="steps">${steps(2,last?last.c:false)}</div>`}
+function openEv(i){evi=i;$("evt").textContent=EV[i][0]+" · "+EV[i][1];$("evf").hidden=false;$("evm").hidden=true;$("evf").scrollIntoView({behavior:"smooth"})}
+function regEv(e){e.preventDefault();$("evm").hidden=false;$("evm").textContent="You’re registered for “"+EV[evi][0]+"”. A confirmation email is on its way (demo)."}
+function pubSub(e){e.preventDefault();$("pm").hidden=false;$("pm").textContent="Thanks! Our publishing team will contact you within 3 business days (demo)."}
+function sign(e){e.preventDefault();user=e.target[0].value.split("@")[0];$("acct").textContent="Hi, "+user;$("sit").textContent="Welcome back, "+user;e.target.hidden=true}
+go("home");
+</script>
+</body>
+</html>
